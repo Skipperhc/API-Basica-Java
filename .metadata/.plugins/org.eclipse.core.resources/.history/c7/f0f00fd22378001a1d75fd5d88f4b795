@@ -1,0 +1,30 @@
+package A.Projeto.API.API.Models;
+
+public class Pessoa {
+
+	private Integer Id;
+	
+	private String Nome;
+	
+	public Pessoa() {}
+	
+	public Pessoa(String nome) {
+		this.Nome = nome;
+	}
+
+	public Integer getId() {
+		return Id;
+	}
+
+	public void setId(Integer id) {
+		Id = id;
+	}
+
+	public String getNome() {
+		return Nome;
+	}
+
+	public void setNome(String nome) {
+		Nome = nome;
+	}
+}

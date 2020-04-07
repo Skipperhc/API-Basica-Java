@@ -1,0 +1,10 @@
+package A.Projeto.API.API.Repository;
+
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import A.Projeto.API.API.Models.Pessoa;
+
+public interface PessoaRepository extends JpaRepository<Pessoa, Integer>{
+
+}

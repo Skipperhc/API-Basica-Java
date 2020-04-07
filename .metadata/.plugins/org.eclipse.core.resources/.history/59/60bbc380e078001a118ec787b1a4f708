@@ -1,0 +1,58 @@
+package A.Projeto.API.API.Controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import A.Projeto.API.API.Models.Pessoa;
+import A.Projeto.API.API.Repository.PessoaRepository;
+
+@RestController
+@RequestMapping(value = "/pessoas")
+public class PessoaController {
+
+	@Autowired //
+	private PessoaRepository pessoaRepos;
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public List<Pessoa> ListarPessoa() {
+		
+		return pessoaRepos.findAll();
+	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public void Salvar(@RequestBody Pessoa pessoa) {
+		pessoaRepos.save(pessoa);
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> Buscar(@PathVariable Integer id) {
+		Pessoa pessoa = pessoaRepos.findById(id).get();
+		if(pessoa == null) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(pessoa);
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public void Deletar(@PathVariable Integer id) {
+		pessoaRepos.deleteById(id);
+	}
+	 
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public void Editar(@RequestBody Pessoa pessoa, @PathVariable Integer id) {
+		pessoa.setId(id);
+		pessoaRepos.save(pessoa);
+	}
+	 
+	
+	
+
+}

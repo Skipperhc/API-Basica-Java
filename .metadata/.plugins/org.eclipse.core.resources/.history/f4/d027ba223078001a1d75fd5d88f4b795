@@ -1,0 +1,31 @@
+package A.Projeto.API.API.Controllers;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import A.Projeto.API.API.Models.Pessoa;
+import A.Projeto.API.API.Repository.PessoaRepository;
+
+@RestController
+public class PessoaController {
+
+	@Autowired
+	PessoaRepository pessoaRepos;
+	
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public List<Pessoa> ListarPessoa() {
+		
+		Pessoa l1 = new Pessoa("Pedro");
+		Pessoa l2 = new Pessoa("Maria");
+		Pessoa l3 = new Pessoa("Vitor");
+		
+		Pessoa[] pessoas = {l1,l2,l3};
+		
+		return Arrays.asList(pessoas);
+	}
+}

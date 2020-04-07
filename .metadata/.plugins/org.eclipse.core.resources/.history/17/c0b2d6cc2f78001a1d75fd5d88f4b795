@@ -1,0 +1,37 @@
+package A.Projeto.API.API.Models;
+
+import javax.persistence.Entity;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@Entity
+public class Pessoa {
+
+	@JsonInclude(Include.NON_NULL)
+	private Integer Id;
+	
+	private String Nome;
+	
+	public Pessoa() {}
+	
+	public Pessoa(String nome) {
+		this.Nome = nome;
+	}
+
+	public Integer getId() {
+		return Id;
+	}
+
+	public void setId(Integer id) {
+		Id = id;
+	}
+
+	public String getNome() {
+		return Nome;
+	}
+
+	public void setNome(String nome) {
+		Nome = nome;
+	}
+}
